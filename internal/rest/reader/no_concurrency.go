@@ -14,7 +14,7 @@ func (h *handler) WithoutConcurrency(w http.ResponseWriter, r *http.Request) {
 		UserID: "1",
 	}
 
-	data, err := h.HomeService.GetSections(ctx, params.ToDomain())
+	data, err := h.HomeService.GetSectionsWithoutConcurrency(ctx, params.ToDomain())
 
 	if err != nil {
 		web.RespondWithError(w, errors.NewInternalServerError("error getting sections", err))

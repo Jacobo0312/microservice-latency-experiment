@@ -11,5 +11,8 @@ type HomeParams struct {
 func (p *HomeParams) ToDomain() entities.HomeParams {
 	return entities.HomeParams{
 		UserID: p.UserID,
+		Sections: []string{
+			"search",
+		},
 	}
 }

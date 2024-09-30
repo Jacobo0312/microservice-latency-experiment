@@ -8,7 +8,8 @@ import (
 
 type (
 	Service interface {
-		GetSections(ctx context.Context, params entities.HomeParams) (*entities.Home, error)
+		GetSectionsWithoutConcurrency(ctx context.Context, params entities.HomeParams) (*entities.Home, error)
+		GetSectionsWithConcurrency(ctx context.Context, params entities.HomeParams) (*entities.Home, error)
 	}
 	service struct {
 		*Container

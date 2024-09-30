@@ -2,16 +2,13 @@ package home
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/Jacobo0312/microservice-latency-experiment/internal/domain/home/entities"
 
 	searchEntities "github.com/Jacobo0312/microservice-latency-experiment/internal/domain/search/entities"
 )
 
-func (s *service) GetSections(ctx context.Context, params entities.HomeParams) (*entities.Home, error) {
-
-	fmt.Println("Getting sections")
+func (s *service) GetSectionsWithoutConcurrency(ctx context.Context, params entities.HomeParams) (*entities.Home, error) {
 
 	searchData, err := s.SearchService.Get(ctx, searchEntities.Params{
 		UserID: params.UserID,
@@ -28,7 +25,9 @@ func (s *service) GetSections(ctx context.Context, params entities.HomeParams) (
 	}
 
 	return &entities.Home{
-		Sections: sections,
+		HomeData: entities.HomeData{
+			Sections: &sections,
+		},
 	}, nil
 
 }
