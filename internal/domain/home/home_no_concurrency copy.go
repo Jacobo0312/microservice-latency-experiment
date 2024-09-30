@@ -21,6 +21,8 @@ func (s *service) GetSectionsWithoutConcurrency(ctx context.Context, params enti
 	sections := entities.Sections{
 		SearchSection: &entities.SearchSection{
 			Payload: searchData.Payload,
+			Name:    "get_search",
+			Result:  "success",
 		},
 	}
 

@@ -13,6 +13,6 @@ func (s *service) Get(ctx context.Context, params entities.Params) (*entities.Da
 	time.Sleep(100 * time.Millisecond) // 50ms
 
 	return &entities.Data{
-		Payload: "Search Service",
+		Payload: "Search Data",
 	}, nil
 }

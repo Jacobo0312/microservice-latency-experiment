@@ -35,7 +35,7 @@ func NewSearch(sectionParams entities.SearchSectionParams, providers ...provider
 func (s *search) Build(ctx context.Context, data *entities.Home) {
 	s.initializeSearchSection(data)
 
-	err := s.providersData["search"].Data(&data.Sections.SearchSection.Payload)
+	err := s.providersData["get_search"].Data(&data.Sections.SearchSection.Payload)
 
 	if err != nil {
 		data.Sections.SearchSection.Result = "error"
@@ -48,5 +48,6 @@ func (s *search) Build(ctx context.Context, data *entities.Home) {
 func (s *search) initializeSearchSection(data *entities.Home) {
 	data.Sections.SearchSection = &entities.SearchSection{
 		Payload: "",
+		Name:    _searchSection,
 	}
 }

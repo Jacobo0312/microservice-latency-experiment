@@ -1,6 +1,5 @@
 package entities
 
-
 type Params struct {
 	UserID string `json:"user_id"`
 }

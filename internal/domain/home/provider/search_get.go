@@ -10,7 +10,7 @@ import (
 type getSearch struct {
 	srv  search.Service
 	err  error
-	data *entities.Data
+	data *string
 	name string
 }
 
@@ -19,7 +19,7 @@ func (s *getSearch) Get(ctx context.Context, userID string) {
 		UserID: userID,
 	})
 
-	s.data = data
+	s.data = &data.Payload
 	s.err = err
 }
 
@@ -28,7 +28,7 @@ func (s *getSearch) Data(value interface{}) error {
 		return s.err
 	}
 	if s.data != nil {
-		v := value.(*entities.Data)
+		v := value.(*string)
 		*v = *s.data
 	}
 	return nil
@@ -40,7 +40,7 @@ func (c *getSearch) Name() string {
 
 func NewSearchGet(srv search.Service) Providers {
 	return &getSearch{
-		name: "search",
+		name: "get_search",
 		srv:  srv,
 	}
 }

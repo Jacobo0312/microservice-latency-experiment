@@ -2,7 +2,6 @@ package home
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/Jacobo0312/microservice-latency-experiment/internal/domain/home/entities"
@@ -15,6 +14,7 @@ func (s *service) GetSectionsWithConcurrency(ctx context.Context, params entitie
 	providersCfg := map[string]section.Sections{
 		"search": section.NewSearch(
 			getSearchSectionParams(),
+			provider.NewSearchGet(s.SearchService),
 		),
 	}
 
@@ -24,7 +24,6 @@ func (s *service) GetSectionsWithConcurrency(ctx context.Context, params entitie
 	for _, sectionValue := range params.Sections {
 		sections[sectionValue] = providersCfg[sectionValue]
 		for _, providerValue := range providersCfg[sectionValue].Providers() {
-			fmt.Println(providerValue.Name())
 			providers[providerValue.Name()] = providerValue
 		}
 	}
