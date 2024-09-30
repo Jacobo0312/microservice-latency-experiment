@@ -6,7 +6,6 @@ import (
 
 	"github.com/Jacobo0312/microservice-latency-experiment/internal/domain/home/entities"
 	"github.com/Jacobo0312/microservice-latency-experiment/internal/domain/home/provider"
-
 	"github.com/Jacobo0312/microservice-latency-experiment/internal/domain/home/section"
 )
 
@@ -15,6 +14,10 @@ func (s *service) GetSectionsWithConcurrency(ctx context.Context, params entitie
 		"search": section.NewSearch(
 			getSearchSectionParams(),
 			provider.NewSearchGet(s.SearchService),
+		),
+		"user": section.NewUser(
+			getUserSectionParams(),
+			provider.NewUserGet(s.UserService),
 		),
 	}
 
@@ -61,4 +64,8 @@ func (s *service) GetSectionsWithConcurrency(ctx context.Context, params entitie
 
 func getSearchSectionParams() entities.SearchSectionParams {
 	return entities.SearchSectionParams{}
+}
+
+func getUserSectionParams() entities.UserSectionParams {
+	return entities.UserSectionParams{}
 }

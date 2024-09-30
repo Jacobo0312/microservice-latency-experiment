@@ -10,7 +10,7 @@ type HomeParams struct {
 
 func (p *HomeParams) ToDomain() entities.HomeParams {
 	sections := make([]string, 0)
-	sections = append(sections, "search")
+	sections = append(sections, "search", "user")
 	return entities.HomeParams{
 		UserID:   p.UserID,
 		Sections: sections,
